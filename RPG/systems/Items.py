@@ -73,7 +73,9 @@ class Weapon(Item):
         return "Weapon"
 
     def entity_info(self):
-        return f"Weapon Name: {self._name}, Weapon ID: {self._id}, Cost: {self._cost}, Rareness: {self._rareness}, Required Level: {self._required_level}, Damage: {self._damage}"  
+        return (f"Weapon Name: {self._name}, Weapon ID: {self._id},"
+                f"Cost: {self._cost}, Rareness: {self._rareness}," 
+                f"Required Level: {self._required_level}, Damage: {self._damage}" ) 
 
 class Armor(Item):
     def __init__(self, name, id, cost, rareness, required_level, defense):
@@ -92,7 +94,9 @@ class Armor(Item):
         return "Armor"
     
     def entity_info(self):
-        return f"Armor Name: {self._name}, Armor ID: {self._id}, Cost: {self._cost}, Rareness: {self._rareness}, Required Level: {self._required_level}, Defense: {self._defense}"
+        return (f"Armor Name: {self._name}, Armor ID: {self._id}," 
+                f"Cost: {self._cost}, Rareness: {self._rareness}," 
+                f"Required Level: {self._required_level}, Defense: {self._defense}")
     
 class Potion(Item):
     def __init__(self, name, id, cost, rareness, required_level, mana_restore):
@@ -111,7 +115,9 @@ class Potion(Item):
         return "Potion"
 
     def entity_info(self):
-        return f"Potion Name: {self._name}, Potion ID: {self._id}, Cost: {self._cost}, Rareness: {self._rareness}, Required Level: {self._required_level}, Mana Restore: {self._mana_restore}"
+        return (f"Potion Name: {self._name}, Potion ID: {self._id}, "
+                f"Cost: {self._cost}, Rareness: {self._rareness}, "
+                f"Required Level: {self._required_level}, Mana Restore: {self._mana_restore}")
 
 class Food(Item):
     def __init__(self, name, id, cost, rareness, required_level, health_restore):
@@ -130,7 +136,9 @@ class Food(Item):
         return "Food"
     
     def entity_info(self):
-        return f"Food Name: {self._name}, Food ID: {self._id}, Cost: {self._cost}, Rareness: {self._rareness}, Required Level: {self._required_level}, Health Restore: {self._health_restore}"
+        return (f"Food Name: {self._name}, Food ID: {self._id},"
+                f"Cost: {self._cost}, Rareness: {self._rareness}," 
+                f"Required Level: {self._required_level}, Health Restore: {self._health_restore}")
 
 class Backpack(Item):
     def __init__(self, name, id, cost, rareness, required_level, capacity):
@@ -149,5 +157,7 @@ class Backpack(Item):
         return "Backpack"
     
     def entity_info(self):
-        return f"Backpack Name: {self._name}, Backpack ID: {self._id}, Cost: {self._cost}, Rareness: {self._rareness}, Required Level: {self._required_level}, Capacity: {self._capacity}"
+        return (f"Backpack Name: {self._name}, Backpack ID: {self._id}," 
+                f"Cost: {self._cost}, Rareness: {self._rareness}," 
+                f"Required Level: {self._required_level}, Capacity: {self._capacity}")
     
