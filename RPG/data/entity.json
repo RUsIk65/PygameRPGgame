@@ -1,0 +1,42 @@
+[
+        {
+        "type": "nps",
+        "name": "Armor/weapon",
+        "hp": 10000,
+        "defense": 0,
+        "attack": 0,
+        "speed": 0,
+        "radar_range": 3,
+        "image": "texture/nps/nps1.png"
+    },
+    {
+        "type": "nps",
+        "name": "Potion/food",
+        "hp": 10000,
+        "defense": 0,
+        "attack": 0,
+        "speed": 0,
+        "radar_range": 3,
+        "image": "texture/nps/nps2.png"
+    },
+    {
+        "type": "nps",
+        "name": "Bank",
+        "hp": 10000,
+        "defense": 0,
+        "attack": 0,
+        "speed": 0,
+        "radar_range": 3,
+        "image": "texture/nps/nps3.png"
+    },
+    {
+        "type": "enemy",
+        "name": "Monster1",
+        "hp": 100,
+        "defense": 0,
+        "attack": 10,
+        "speed": 5,
+        "radar_range": 6,
+        "image": "texture/"
+    }
+]

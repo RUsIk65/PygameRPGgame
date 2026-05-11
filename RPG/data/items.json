@@ -1,0 +1,43 @@
+[
+    
+    {
+        "type": "potion",
+        "name": "Monster Energy",
+        "image": "texture/items/potions/Monster-Energy.png",
+        "cost": 100,
+        "rareness": "common",
+        "required_level": 1,
+        "mana_restore": 50
+  
+    },
+    {
+        "type": "potion",
+        "name": "Stout",
+        "image": "texture/items/potions/Stout.png",
+        "cost": 100,
+        "rareness": "common",
+        "required_level": 1,
+        "mana_restore": 90
+  
+    },
+    {
+        "type": "potion",
+        "name": "Ipa",
+        "image": "texture/items/potions/Ipa.png",
+        "cost": 100,
+        "rareness": "common",
+        "required_level": 1,
+        "mana_restore": 50
+  
+    },
+    {
+        "type": "potion",
+        "name": "Monster Weiß",
+        "image": "texture/items/potions/Monster- Weiß.png",
+        "cost": 100,
+        "rareness": "common",
+        "required_level": 1,
+        "mana_restore": 50
+  
+    }
+]
