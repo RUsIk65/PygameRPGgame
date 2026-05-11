@@ -1,0 +1,12 @@
+[
+    {
+        "type": "potion",
+        "name": "Monster Energy",
+        "image": "texture/items/potions/Monster-Energy.png",
+        "cost": 100,
+        "rareness": "common",
+        "required_level": 1,
+        "mana_restore": 50
+  
+    }
+]

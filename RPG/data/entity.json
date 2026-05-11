@@ -1,0 +1,12 @@
+[
+    {
+        "type": "nps",
+        "name": "Yerzat",
+        "hp": 100,
+        "defense": 5,
+        "attack": 15,
+        "speed": 10,
+        "radar_range": 20,
+        "image": "Bock.png"
+    }
+]
