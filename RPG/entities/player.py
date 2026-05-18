@@ -1,8 +1,9 @@
 import pygame 
 from base_entity import BaseEntity
+from system.stats import Stats
 
 class Player(BaseEntity):
-    def __init__(self, id, name, image, hp, defense = 0, attack = 0, speed = 5, radar_range = 0):
+    def __init__(self, id, name, image, hp, defense=0, attack=0, speed=5, radar_range=0):
         super().__init__(id, name, image, hp, defense, attack, speed, radar_range)
 
         self._x = 0
@@ -12,12 +13,7 @@ class Player(BaseEntity):
         self._rect = pygame.Rect(self._x, self._y, 64, 64) 
         self._hitbox = pygame.Rect(self._x +16, self._y + 8, 32, 48)
 
-        self._level = 1
-        self._exp = 0
-        self._exp_to_next = 100
-
-        self._mana = 100
-        self._max_mana = 100
+        self.stats = Stats(hp=hp, mana=50, attack=attack, defense=defense, speed=speed)
 
         self._state = "idle" # жив не жив то и се
 
