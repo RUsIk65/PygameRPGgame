@@ -26,7 +26,13 @@ def main():
         screen.blit(nps2, (400, 100))
         screen.blit(nps3, (500, 100))
         pygame.display.flip()
-    
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    target_pos = event.pos
     pygame.quit()
 
 if __name__ == "__main__":
