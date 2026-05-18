@@ -1,6 +1,6 @@
 import pygame 
 from base_entity import BaseEntity
-from system.stats import Stats
+from systems.stats import Stats
 
 class Player(BaseEntity):
     def __init__(self, id, name, image, hp, defense=0, attack=0, speed=5, radar_range=0):
