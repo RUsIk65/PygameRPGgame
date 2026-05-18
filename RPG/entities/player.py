@@ -38,3 +38,43 @@ class Player(BaseEntity):
     @state.setter
     def state(self,  state):
         self._state = state
+
+    def change_state(self, new_state):
+        valid_states = ["idle", "run", "attack", "death", "stun"]
+
+        if self._state == "death":
+            return
+        if self._state == "stun" and new_state not in ["death"]:
+            return 
+        if new_state in valid_states:
+            self._state = new_state
+
+    def is_alive(self):
+        return self.stats.current_hp > 0
+
+    def update_state(self):
+        if not self.is_alive():
+            self.change_state("death")
+
+    def move_to(self, target_x, target_y):
+        target = pygame.math.Vector2(target_x, target_y)
+        pos = pygame.math.Vector2(self._rect.x, self._rect.y)
+
+        destance = target - pos
+
+        if distance.length() < self.stats.speed:
+            self._rect.x = target_x
+            self._rect.y = target_y
+            self.change_state("idle")
+            self._direction = pygame.math.Vector2(0, 0)
+
+        self._direction = distance.normalize()
+        self._rect.x += self._direction.x * self.stats.speed
+        self._rect.y += self._direction.y * self.stats.speed
+        self.update_hitbox()
+        self.change_state("run")
+
+    def update(self, target_pos=None):
+        if target_pos:
+            self.move_to(target_pos[0], target_pos[1])
+        self.update_state()
