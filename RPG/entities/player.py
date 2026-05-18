@@ -29,19 +29,7 @@ class Player(BaseEntity):
         self._hitbox.y = self._rect.y + 8
         
     def entity_info(self):
-        return f"Player: {self._name} | level1: {self._level} \nHP: {self._hp} | Mana: {self._mana}"
-
-    @property
-    def level(self):
-        return self._level
-
-    @property
-    def exp(self):
-        return self._exp
-
-    @property
-    def mana(self):
-        return self._mana
+        return f"Player: {self._name} | Level: {self.stats.level} \nHP: {self.stats.current_hp}/{self.stats.max_hp} | Mana: {self.stats.current_mana}/{self.stats.max_mana}"
 
     @property
     def state(self):
