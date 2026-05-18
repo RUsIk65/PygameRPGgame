@@ -31,16 +31,6 @@ class Player(BaseEntity):
     def entity_info(self):
         return f"Player: {self._name} | level1: {self._level} \nHP: {self._hp} | Mana: {self._mana}"
 
-    def gain_exp(self, amount):
-        self._exp += amount
-        if self._exp >= self._exp_to_next:
-            self._level_up()
-
-    def _level_up(self):
-        self._exp -= self._exp_to_next
-        self._level += 1
-        self._exp_to_next = int(self._exp_to_next * 1.5)
-
     @property
     def level(self):
         return self._level
