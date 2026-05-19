@@ -16,6 +16,7 @@ def main():
     pygame.display.set_caption("RPG Game")
 
     running = True
+    target_pos = None
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
