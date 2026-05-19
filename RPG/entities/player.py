@@ -60,13 +60,14 @@ class Player(BaseEntity):
         target = pygame.math.Vector2(target_x, target_y)
         pos = pygame.math.Vector2(self._rect.x, self._rect.y)
 
-        destance = target - pos
+        distance = target - pos
 
         if distance.length() < self.stats.speed:
             self._rect.x = target_x
             self._rect.y = target_y
             self.change_state("idle")
             self._direction = pygame.math.Vector2(0, 0)
+            return
 
         self._direction = distance.normalize()
         self._rect.x += self._direction.x * self.stats.speed
