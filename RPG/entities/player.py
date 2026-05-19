@@ -1,6 +1,7 @@
 import pygame 
 from base_entity import BaseEntity
 from systems.stats import Stats
+from systems.inventory import Inventory
 
 class Player(BaseEntity):
     def __init__(self, id, name, image, hp, defense=0, attack=0, speed=5, radar_range=0):
@@ -16,6 +17,8 @@ class Player(BaseEntity):
         self.stats = Stats(hp=hp, mana=50, attack=attack, defense=defense, speed=speed)
 
         self._state = "idle" # жив не жив то и се
+
+        self.inventory = Inventory()
 
         self._weapon_type = None
         self._atack_cooldown = 0
