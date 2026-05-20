@@ -14,9 +14,9 @@ class InventoryUI:
         self.start_x = 150
         self.start_y = 180
 
- # DRAW INVENTORY
-    
-      def draw(self, screen, font):
+    # DRAW INVENTORY
+
+    def draw(self, screen, font):
 
         # background
         pygame.draw.rect(
