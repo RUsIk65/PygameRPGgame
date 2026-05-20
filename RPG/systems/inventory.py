@@ -70,7 +70,7 @@ class Inventory:
         return None
     
     def show_inventory(self):
-        print("=== ИНВЕНТАРЬ ===")
+        print("=== Inventory ===")
         print(f"Weapon: {self.equipped['weapon'].name if self.equipped['weapon'] else 'пусто'}")
         print(f"Armor: {self.equipped['armor'].name if self.equipped['armor'] else 'пусто'}")
         print(f"Potion: {len(self.potions)}/{self.max_potions}")
