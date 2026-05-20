@@ -12,7 +12,7 @@ class Stats:
         speed=4,
         attack_range=50,
         crit_chance=5
-        level=00
+        level=1
     ):
 
         # Уровень 
@@ -21,16 +21,19 @@ class Stats:
         self.xp_to_next_level = 100
 
         
-        self.max_hp = hp
-        self.current_hp = hp
+        self._max_hp = int(self.max_hp * 1.20 * self.level)
+        self._max_mana = int(self.max_mana * 1.15 * self.level)
 
-        self.max_mana = mana
-        self.current_mana = mana
+        self._attack = int(self.attack * 1.15 * self.level)
+        self._defense = int(self.defense * 1.10 * self.level)
 
-        self.attack = attack
-        self.defense = defense
-        self.speed = speed
-        self.attack_range = attack_range
+        self._speed = speed
+
+        self._attack_range = attack_range 
+
+        self._xp_to_next_level = int(self.xp_to_next_level * 1.35 * self.level)
+
+        
 
     
     # система XP
