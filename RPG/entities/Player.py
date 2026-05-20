@@ -50,8 +50,4 @@ class Player(BaseEntity, Stats):
 
             self.rect.center = (int(self.pos_x), int(self.pos_y))
 
-        # Ограничение карты
-        self.rect.x = max(0, min(1500 - self.rect.width, self.rect.x))
-        self.rect.y = max(0, min(800 - self.rect.height, self.rect.y))
-
-
+       
