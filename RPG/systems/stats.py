@@ -30,7 +30,6 @@ class Stats:
         self.attack = attack
         self.defense = defense
         self.speed = speed
-        self.charisma = charisma
         self.attack_range = attack_range
 
     
@@ -50,38 +49,36 @@ class Stats:
     def level_up(self):
         self.level += 1
 
-        self.max_hp = int(self.max_hp * 1.20)
+        #self.max_hp = int(self.max_hp * 1.20 * self.level)
         self.current_hp = self.max_hp
 
-        self.max_mana = int(self.max_mana * 1.15)
+        #self.max_mana = int(self.max_mana * 1.15)
         self.current_mana = self.max_mana
 
 
-        self.attack = int(self.attack * 1.15)
+        #self.attack = int(self.attack * 1.15)
 
-        self.defense = int(self.defense * 1.10)
+        #self.defense = int(self.defense * 1.10)
 
-        self.speed = int(self.speed * 1.15)
+        #self.speed = int(self.speed * 1.15)
 
-        self.charisma = int(self.charisma * 1.05)
+        # self.attack_range = int(self.attack_range * 1.05)
 
-        self.attack_range = int(self.attack_range * 1.05)
-
-        self.xp_to_next_level = int(self.xp_to_next_level * 1.35)
+        # self.xp_to_next_level = int(self.xp_to_next_level * 1.35)
 
         print(f"LEVEL UP! New level: {self.level}")
 
     #система урона
 
-    def take_damage(self, damage):
-        final_damage = max(0, damage - self.defense)
+    # def take_damage(self, damage):
+    #     final_damage = max(0, damage - self.defense)
 
-        self.current_hp -= final_damage
+    #     self.current_hp -= final_damage
 
-        if self.current_hp < 0:
-            self.current_hp = 0
+    #     if self.current_hp < 0:
+    #         self.current_hp = 0
 
-        return final_damage
+    #     return final_damage
 
     #хилка
 
@@ -112,6 +109,5 @@ class Stats:
         print(f"Attack: {self.attack}")
         print(f"Defense: {self.defense}")
         print(f"Speed: {self.speed}")
-        print(f"Charisma: {self.charisma}")
         print(f"Attack Range: {self.attack_range}")
         print("==========================")
