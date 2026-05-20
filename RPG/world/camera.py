@@ -1,8 +1,8 @@
 import pygame
-from random import randint
 from pytmx.util_pygame import load_pygame
 
 maps = None
+
 def load_map():
     global maps
     maps = load_pygame('world/1.tmx')
@@ -19,10 +19,10 @@ class Camera_group(pygame.sprite.Group):
         self.half_w = self.display_surface.get_size()[0] // 2
         self.half_h = self.display_surface.get_size()[1] // 2
 
-        self.camera_bordes = {'left' : 200, 'right' : 200, 'top' : 100, 'bottom' : 100}
+        self.camera_bordes = {'left': 200, 'right': 200, 'top': 100, 'bottom': 100}
         l = self.camera_bordes['left']
         t = self.camera_bordes['top']
-        w = self.display_surface.get_size()[0] - (self.camera_bordes['left'] + self.camera_bordes['right']) 
+        w = self.display_surface.get_size()[0] - (self.camera_bordes['left'] + self.camera_bordes['right'])
         h = self.display_surface.get_size()[1] - (self.camera_bordes['top'] + self.camera_bordes['bottom'])
         self.camera_box = pygame.Rect(l, t, w, h)
 
@@ -31,10 +31,8 @@ class Camera_group(pygame.sprite.Group):
         self.offset.y = target.rect.centery - self.half_h
 
     def box_camera(self, target):
-
         if target.rect.left < self.camera_box.left:
-            self.camera_box.left = target.rect.left  
-
+            self.camera_box.left = target.rect.left
         if target.rect.right > self.camera_box.right:
             self.camera_box.right = target.rect.right
         if target.rect.top < self.camera_box.top:
@@ -45,22 +43,20 @@ class Camera_group(pygame.sprite.Group):
         self.offset.x = self.camera_box.left - self.camera_bordes['left']
         self.offset.y = self.camera_box.top - self.camera_bordes['top']
 
-
     def kaif_draw(self, target):
-        
         self.center_camera(target)
 
         for layer in maps.visible_layers:
             for x, y, surf in layer.tiles():
+                if surf is None:  # пропускаем пустые тайлы
+                    continue
                 pos = (16 * x, 16 * y)
                 ground_offset = pos - self.offset
                 self.display_surface.blit(surf, ground_offset)
-      
-        for sprite in sorted(self.sprites(), key = lambda sprite: sprite.rect.centery):
+
+        for sprite in sorted(self.sprites(), key=lambda sprite: sprite.rect.centery):
             sprite_offset = sprite.rect.topleft - self.offset
             self.display_surface.blit(sprite.image, sprite_offset)
 
 
-
 camera_group = Camera_group(screen)
-
