@@ -38,9 +38,7 @@ class Bar:
         )
 
         # fill
-        fill = (
-            current_value / self.max_value
-        ) * self.width
+        fill = max(4, (current_value / self.max_value) * self.width)
 
         # bar
         pygame.draw.rect(
