@@ -1,7 +1,7 @@
 import random
-from systems.combat import 
+from systems.stats import Stats
 
-class Combat:
+class Combat(Stats):
 
     def calculate_damage(self, attacker, target):
 
