@@ -10,9 +10,9 @@ class Stats:
         attack=10,
         defense=5,
         speed=4,
-        charisma=10,
         attack_range=50,
-        level=0
+        crit_chance=5
+        level=00
     ):
 
         # Уровень 
