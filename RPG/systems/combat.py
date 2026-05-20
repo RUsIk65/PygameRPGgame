@@ -1,11 +1,9 @@
 import random
 
-
 class Combat:
 
     def calculate_damage(self, attacker, target):
 
-        # dodge
         dodge_chance = target.speed * 2
         if random.randint(1, 100) <= dodge_chance:
             return 0, False 
@@ -14,9 +12,8 @@ class Combat:
 
         if base_damage < 0:
             base_damage = 0
-
-        # критический урон
-        crit_chance = 10
+            
+        crit_chance = 5
         is_crit = random.randint(1, 100) <= crit_chance
 
         if is_crit:
