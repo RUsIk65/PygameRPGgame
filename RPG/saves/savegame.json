@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "saved_at": "2026-05-21T03:45:03",
+    "version": "1.0"
+  },
+  "stats": {
+    "level": 1,
+    "xp": 0,
+    "xp_to_next_level": 135,
+    "current_hp": 120,
+    "max_hp": 120,
+    "current_mana": 57,
+    "max_mana": 57,
+    "base_hp": 100,
+    "base_mana": 50,
+    "base_attack": 20,
+    "base_defense": 10,
+    "speed": 10,
+    "attack_range": 0,
+    "crit_chance": 0
+  },
+  "inventory": {
+    "equipped": {
+      "weapon": null,
+      "armor": null
+    },
+    "potions": [],
+    "slots": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  }
+}
