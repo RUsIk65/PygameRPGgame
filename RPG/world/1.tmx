@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="left-down" width="500" height="500" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="1">
- <tileset firstgid="1" source="../../texture/The Fan-tasy Tileset (Free)/Tiled/Tilesets/Tileset_Ground.tsx"/>
+
  <tileset firstgid="169" source="Tileset_Water.tsx"/>
  <tileset firstgid="481" source="forest_demo_objects.tsx"/>
  <tileset firstgid="737" source="forest_demo_terrain.tsx"/>
