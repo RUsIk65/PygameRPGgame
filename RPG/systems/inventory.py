@@ -12,7 +12,7 @@ class Inventory:
     self.slots = [None] * 32
 
   def equipp(self, item, player):
-    if  ininstance(item, Weapon):
+    if  isinstance(item, Weapon):
       if player.stats.level < item.required_level:
         print(f"Need {item.required_level} for equip")
         return False
