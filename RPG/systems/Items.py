@@ -98,6 +98,9 @@ class Weapon(Item):
                 f"Rareness: {self._rareness}," 
                 f"Required Level: {self._required_level}," 
                 f"Damage: {self._damage}" ) 
+    
+    def eqiup_weapon(self, player):
+        player.damage += self._damage
 
 class Armor(Item):
     def __init__(self, id, name, image, cost, rareness, required_level, defense, max_stack=1):
@@ -124,6 +127,11 @@ class Armor(Item):
                 f"Required Level: {self._required_level}," 
                 f"Defense: {self._defense}," 
                 f"Max Stack: {self._max_stack}")
+
+    def eqiup_armor(self, target):
+        target.defense += self.defense
+
+    
     
 class Potion(Item):
     def __init__(self, id, name, image, cost, rareness, required_level, mana_restore, max_stack=100):
@@ -149,6 +157,13 @@ class Potion(Item):
                 f"Rareness: {self._rareness}," 
                 f"Required Level: {self._required_level}," 
                 f"Mana Restore: {self._mana_restore}")
+    
+    def use_potion(self, target):
+        target.current_mana += self._mana_restore
+        if target.max_mana < target.current_mana:
+            target.current_mana = target.max_mana
+    
+
 
 class Food(Item):
     def __init__(self, id, name, image, cost, rareness, required_level, health_restore, max_stack=100):
@@ -173,6 +188,13 @@ class Food(Item):
                 f"Rareness: {self._rareness}," 
                 f"Required Level: {self._required_level}," 
                 f"Health Restore: {self._health_restore}")
+
+    def use_food(self, target):
+        target.current_hp += self._health_restore
+        if target.current_hp > target.max_hp:
+            target.current_hp = target.max_hp
+
+  
 
 class Backpack(Item):
     def __init__(self, id, name, image, cost, rareness, required_level, capacity, max_stack=1):
