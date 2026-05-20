@@ -21,11 +21,7 @@ class Menu:
         for _ in self.options:
             self.button_rects.append(pygame.Rect(270, y - 5, 260, 50))
             y += 60
-
-    # =========================
     # DRAW MENU
-    # =========================
-
     def draw(self, screen, font):
         screen.fill('#71ddee')
 
@@ -54,18 +50,14 @@ class Menu:
             screen.blit(text, (300, y))
             y += 60
 
-    # =========================
-    # MOUSE HOVER
-    # =========================
-
-    def handle_mouse_motion(self, mouse_pos):
+    # MOUSE 
+ 
+def handle_mouse_motion(self, mouse_pos):
         for i, rect in enumerate(self.button_rects):
             if rect.collidepoint(mouse_pos):
                 self.selected_option = i
 
-    # =========================
-    # MOUSE CLICK
-    # =========================
+   
 
     def handle_mouse_click(self, mouse_pos):
         for i, rect in enumerate(self.button_rects):
@@ -74,34 +66,24 @@ class Menu:
                 return self.select()
         return None
 
-    # =========================
-    # MOVE UP
-    # =========================
-
+    
     def move_up(self):
         self.selected_option -= 1
         if self.selected_option < 0:
             self.selected_option = len(self.options) - 1
 
-    # =========================
-    # MOVE DOWN
-    # =========================
+    
 
     def move_down(self):
         self.selected_option += 1
         if self.selected_option >= len(self.options):
             self.selected_option = 0
 
-    # =========================
-    # GET SELECTED OPTION
-    # =========================
-
+   
     def get_selected(self):
         return self.options[self.selected_option]
 
-    # =========================
-    # ACTIONS
-    # =========================
+    
 
     def select(self):
         option = self.get_selected()
