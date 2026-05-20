@@ -68,10 +68,7 @@ def _dict_to_item(data):
     else:
         return None
 
-
-# ─────────────────────────────────────────────
 #  СОХРАНЕНИЕ
-# ─────────────────────────────────────────────
 
 def save_game(player_stats, inventory, save_path: str = SAVE_FILE) -> bool:
     """
@@ -87,7 +84,7 @@ def save_game(player_stats, inventory, save_path: str = SAVE_FILE) -> bool:
     try:
         os.makedirs(os.path.dirname(save_path) or ".", exist_ok=True)
 
-        # ── Статы игрока ──────────────────────────────────────────────────
+        # ── Статы игрока
         stats_data = {
             "level": player_stats.level,
             "xp": player_stats.xp,
@@ -105,7 +102,7 @@ def save_game(player_stats, inventory, save_path: str = SAVE_FILE) -> bool:
             "crit_chance": player_stats._crit_chance,
         }
 
-        # ── Инвентарь ─────────────────────────────────────────────────────
+        # ── Инвентарь
         inventory_data = {
             "equipped": {
                 "weapon": _item_to_dict(inventory.equipped.get("weapon")),
@@ -137,9 +134,9 @@ def save_game(player_stats, inventory, save_path: str = SAVE_FILE) -> bool:
         return False
 
 
-# ─────────────────────────────────────────────
+
 #  ЗАГРУЗКА
-# ─────────────────────────────────────────────
+
 
 def load_game(player_stats, inventory, save_path: str = SAVE_FILE) -> bool:
     """
@@ -160,7 +157,7 @@ def load_game(player_stats, inventory, save_path: str = SAVE_FILE) -> bool:
         with open(save_path, "r", encoding="utf-8") as f:
             save_data = json.load(f)
 
-        # ── Восстанавливаем статы ──────────────────────────────────────────
+        # ── Восстанавливаем статы 
         s = save_data["stats"]
 
         player_stats._level = s["level"]
@@ -183,7 +180,7 @@ def load_game(player_stats, inventory, save_path: str = SAVE_FILE) -> bool:
         player_stats._attack_range = s["attack_range"]
         player_stats._crit_chance = s["crit_chance"]
 
-        # ── Восстанавливаем инвентарь ──────────────────────────────────────
+        # ── Восстанавливаем инвентарь
         inv = save_data["inventory"]
 
         inventory.equipped["weapon"] = _dict_to_item(inv["equipped"]["weapon"])
@@ -206,10 +203,9 @@ def load_game(player_stats, inventory, save_path: str = SAVE_FILE) -> bool:
         print(f"[SaveSystem] Ошибка загрузки: {e}")
         return False
 
+ 
 
-# ─────────────────────────────────────────────
 #  УТИЛИТЫ
-# ─────────────────────────────────────────────
 
 def save_exists(save_path: str = SAVE_FILE) -> bool:
     """Проверяет, существует ли файл сохранения."""
