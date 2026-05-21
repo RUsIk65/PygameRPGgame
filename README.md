@@ -1,7 +1,10 @@
 Yerzat67 is here
 Masnur52 also here
 Ruslan69 also here
-🎮 Project Overview
+
+
+
+Project Overview
 
 This is a 2D RPG game built using Python and Pygame.
 The project follows a modular architecture with separated systems for gameplay, UI, entities, database logic, and world management.
