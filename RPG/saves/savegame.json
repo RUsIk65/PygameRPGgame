@@ -15,7 +15,7 @@
     "base_mana": 50,
     "base_attack": 20,
     "base_defense": 10,
-    "speed": 10,
+    "speed": 50,
     "attack_range": 0,
     "crit_chance": 0
   },
