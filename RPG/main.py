@@ -22,9 +22,9 @@ font_small = pygame.font.SysFont(None, 22)
 clock = pygame.time.Clock()
 
 
-# =========================
+
 # MENU LOOP
-# =========================
+
 
 menu = Menu()
 in_menu = True
@@ -65,9 +65,7 @@ while in_menu:
     clock.tick(60)
 
 
-# =========================
-# GAME SETUP
-# =========================
+
 
 load_map()
 
@@ -86,15 +84,11 @@ if save_exists():
 inventory_ui = InventoryUI(inventory)
 pause_menu   = PauseMenu()
 
-# BARS
+
 hp_bar   = Bar(20, 25, 200, 16, player.max_hp,           (220, 50,  50))
 mana_bar = Bar(20, 50, 200, 16, player.max_mana,          (50,  100, 255))
 xp_bar   = Bar(20, 75, 200, 12, player.xp_to_next_level,  (0,   200, 50))
 
-
-# =========================
-# GAME LOOP
-# =========================
 
 running = True
 
@@ -141,11 +135,9 @@ while running:
                 mana_bar.max_value = player.max_mana
                 xp_bar.max_value   = player.xp_to_next_level
 
-    # UPDATE
     if not pause_menu.visible:
         camera_group.update()
 
-    # DRAW
     screen.fill((0, 0, 0))
     camera_group.kaif_draw(player)
 
