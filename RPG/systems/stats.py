@@ -9,7 +9,7 @@ class Stats:
         mana=50,
         attack=20,
         defense=10,
-        speed=10,
+        speed=50,
         attack_range=0,
         crit_chance=0,
         level=1
