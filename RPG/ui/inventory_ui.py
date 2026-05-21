@@ -25,7 +25,6 @@ ITEM_TYPE_LABEL = {
 
 
 class InventoryUI:
-
     SLOT_W  = 220
     SLOT_H  = 30
     BAG_X   = 60
@@ -50,33 +49,22 @@ class InventoryUI:
             return
 
         if event.type == pygame.KEYDOWN:
-            items = [s for s in self.inventory.slots if s is not None]
+            items = self.inventory.items 
 
             if event.key in (pygame.K_UP, pygame.K_w):
                 self._selected_idx = max(0, self._selected_idx - 1)
 
             elif event.key in (pygame.K_DOWN, pygame.K_s):
-                self._selected_idx = min(max(0, len(items) - 1),
-                                         self._selected_idx + 1)
+                self._selected_idx = min(max(0, len(items) - 1), self._selected_idx + 1)
 
             elif event.key == pygame.K_RETURN:
                 if items and self._selected_idx < len(items):
                     self._equip_item(items[self._selected_idx])
 
     def _equip_item(self, item):
-        item_type = item.item_type()
-        slot = None
-        if item_type == "Weapon":
-            slot = "weapon"
-        elif item_type == "Armor":
-            slot = "armor"
-        if slot:
-            old = self.inventory.equipped.get(slot)
-            self.inventory.equipped[slot] = item
-            for i, s in enumerate(self.inventory.slots):
-                if s is item:
-                    self.inventory.slots[i] = old
-                    break
+        self.inventory.equip(item)
+        if self._selected_idx >= len(self.inventory.items):
+            self._selected_idx = max(0, len(self.inventory.items) - 1)
 
     def draw(self, surface, player=None, font=None):
         if not self.visible:
@@ -98,9 +86,9 @@ class InventoryUI:
         self._draw_hint(surface, sw, sh)
 
     def _draw_bag(self, surface):
-        items = [s for s in self.inventory.slots if s is not None]
+        items = self.inventory.items
         count = len(items)
-        total = len(self.inventory.slots)
+        total = self.inventory.MAX_SIZE
 
         head = self._font_item.render(f"Сумка  ({count}/{total})", True, WHITE)
         surface.blit(head, (self.BAG_X, self.BAG_Y - 28))
@@ -112,12 +100,10 @@ class InventoryUI:
             bg = (40, 60, 90) if i == self._selected_idx else (25, 25, 35)
             pygame.draw.rect(surface, bg, rect, border_radius=4)
 
-            rarity_col = RARITY_COLORS.get(
-                getattr(item, "rareness", "common"), LIGHT_GREY)
+            rarity_col = RARITY_COLORS.get(getattr(item, "rareness", "common"), LIGHT_GREY)
             pygame.draw.rect(surface, rarity_col, rect, 2, border_radius=4)
 
-            label_s = self._font_desc.render(
-                ITEM_TYPE_LABEL.get(item.item_type(), "?"), True, rarity_col)
+            label_s = self._font_desc.render(ITEM_TYPE_LABEL.get(item.item_type(), "?"), True, rarity_col)
             surface.blit(label_s, (rect.x + 6, rect.y + 7))
 
             name_s = self._font_item.render(item.name, True, rarity_col)
@@ -126,15 +112,12 @@ class InventoryUI:
             stat_str = self._item_stat_str(item)
             if stat_str:
                 st_s = self._font_desc.render(stat_str, True, (180, 180, 180))
-                surface.blit(st_s, (
-                    rect.x + self.SLOT_W - st_s.get_width() - 6,
-                    rect.y + 9))
+                surface.blit(st_s, (rect.x + self.SLOT_W - st_s.get_width() - 6, rect.y + 9))
 
         if items and self._selected_idx < len(items):
             sel = items[self._selected_idx]
             desc_y = self.BAG_Y + len(items) * (self.SLOT_H + 3) + 14
-            desc_s = self._font_desc.render(
-                getattr(sel, "description", ""), True, (160, 160, 170))
+            desc_s = self._font_desc.render(getattr(sel, "description", ""), True, (160, 160, 170))
             surface.blit(desc_s, (self.BAG_X, desc_y))
 
     def _draw_equipped(self, surface):
@@ -158,45 +141,32 @@ class InventoryUI:
             surface.blit(lbl, (rect.x + 8, rect.y + 8))
 
             if item:
-                col    = RARITY_COLORS.get(
-                    getattr(item, "rareness", "common"), LIGHT_GREY)
+                col    = RARITY_COLORS.get(getattr(item, "rareness", "common"), LIGHT_GREY)
                 name_s = self._font_item.render(item.name, True, col)
                 surface.blit(name_s, (rect.x + 8, rect.y + 28))
-                stat_s = self._font_desc.render(
-                    self._item_stat_str(item), True, (180, 180, 180))
+                stat_s = self._font_desc.render(self._item_stat_str(item), True, (180, 180, 180))
                 surface.blit(stat_s, (rect.x + 8, rect.y + 50))
             else:
-                empty_s = self._font_desc.render(
-                    "-- пусто --", True, (70, 70, 80))
+                empty_s = self._font_desc.render("-- пусто --", True, (70, 70, 80))
                 surface.blit(empty_s, (rect.x + 8, rect.y + 28))
 
     def _draw_stats(self, surface, player):
         x = self.EQUIP_X
         y = self.EQUIP_Y + 2 * 80 + 20
 
-        # Фон блока статов
         rect = pygame.Rect(x, y, 260, 140)
         pygame.draw.rect(surface, (18, 22, 32), rect, border_radius=6)
         pygame.draw.rect(surface, (70, 90, 130), rect, 2, border_radius=6)
 
         head = self._font_item.render("Итоговые статы", True, WHITE)
         surface.blit(head, (x + 8, y + 8))
-
-        # Бонус от экипировки
-        bonus_atk = 0
-        bonus_def = 0
-        w = self.inventory.equipped.get("weapon")
-        a = self.inventory.equipped.get("armor")
-        if w:
-            bonus_atk += getattr(w, "damage", 0)
-        if a:
-            bonus_def += getattr(a, "defense", 0)
+        bonuses = self.inventory.get_bonus_stats()
 
         lines = [
             (f"HP:      {player.current_hp} / {player.max_hp}",    (255, 100, 100)),
             (f"Mana:    {player.current_mana} / {player.max_mana}", (100, 160, 255)),
-            (f"Атака:   {player._attack} (+{bonus_atk})",           (255, 200, 80)),
-            (f"Защита:  {player._defense} (+{bonus_def})",          (100, 220, 255)),
+            (f"Атака:   {player._attack} (+{bonuses['attack']})",           (255, 200, 80)),
+            (f"Защита:  {player._defense} (+{bonuses['defense']})",          (100, 220, 255)),
             (f"Скорость:{player._speed}",                           (180, 255, 180)),
             (f"Крит:    {player._crit_chance}%",                    (255, 160, 60)),
         ]
