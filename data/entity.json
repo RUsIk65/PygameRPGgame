@@ -1,0 +1,35 @@
+[
+    {
+        "type": "nps",
+        "nps_type": "Shoper",
+        "name": "Armor/weapon",
+        "image": "texture/nps/nps1.png",
+        "pos": {"x": 560, "y": 100}
+    },
+    {
+        "type": "nps",
+        "nps_type": "Shoper",
+        "name": "Potion/food",
+        "image": "texture/nps/nps2.png",
+        "pos": {"x": 100, "y": 100}
+    },
+    {
+        "type": "nps",
+        "nps_type": "Bank",
+        "name": "Banker",
+        "image": "texture/nps/nps3.png",
+        "pos": {"x": 200, "y": 100}
+    },
+    {
+        "type": "enemy",
+        "name": "Virus1",
+        "image": "texture/enemy/Monster1_front_left_pos1.png",
+        "pos": {"x": 300, "y": 100}
+    },
+    {
+        "type": "enemy",
+        "name": "Virus2",
+        "image": "texture/enemy/Monster2_front_left_pos1.png",
+        "pos": {"x": 160, "y": 400}
+    }
+]
