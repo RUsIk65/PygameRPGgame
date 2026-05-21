@@ -78,8 +78,6 @@ class InventoryUI:
                     self.inventory.slots[i] = old
                     break
 
-    # ── Рендер ──────────────────────────────────────────────────────────
-
     def draw(self, surface, player=None, font=None):
         if not self.visible:
             return
