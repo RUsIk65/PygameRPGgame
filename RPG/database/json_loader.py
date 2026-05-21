@@ -29,6 +29,7 @@ def load_items_from_json(json_file):
             ))
         
         entity_id = cursor.lastrowid
+        set_items(item)
         match item['type']:
             case 'weapon':
                 cursor.execute("""
